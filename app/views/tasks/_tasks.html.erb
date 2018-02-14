@@ -1,0 +1,39 @@
+<h1>タスク一覧</h1>
+<ul class="media-list">
+  <% tasks.each do |task| %>
+    <% user = task.user %>
+    <li class="media">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= task.created_at %></span>
+        </div>
+        <div>          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>status</th>
+                <th>タスク</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td><%= link_to task.id, task %></td>
+                  <td><%= task.status %></td>
+                  <td><%= task.content %></td>
+                  <td>
+                    <% if current_user == task.user %>
+                      <%= link_to "削除", task, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+                    <% end %>
+                    </td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%# <%= paginate microposts %>
+</ul>
